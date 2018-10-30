@@ -20,10 +20,18 @@ public class BookController {
     private BookRepository bookRepository;
 
     /**
+     * 所有图书
+     */
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public Object all() {
+        return bookRepository.findAll();
+    }
+
+    /**
      * 根据图书编号查询图书
      */
-    @RequestMapping(value = "/{bookNo}", method = RequestMethod.GET)
-    public Object getBookByBookNo(@PathVariable("bookNo") String bookNo) {
+    @RequestMapping(value = "/no/{bookNo}", method = RequestMethod.GET)
+    public Object bookNo(@PathVariable("bookNo") String bookNo) {
         if (bookNo == null || bookNo.length() == 0) {
             return null;
         }
